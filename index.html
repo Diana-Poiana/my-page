@@ -81,7 +81,28 @@
   <!-- <footer class="footer">
 
   </footer> -->
+  <script src="https://app.storyblok.com/f/storyblok-latest.js"></script>
+  <script>
+    // Initialize Storyblok client
+    const { Storyblok } = window;
+
+    // Your Storyblok API token
+    const accessToken = 'LeefeUkJwy0vrTrfJ8rhUAtt';
+
+    // Initialize the client with your access token
+    Storyblok.init({ accessToken });
+  </script>
   <script type="module" src="js/main.js"></script>
+  <script>
+    // Fetch a story from your Storyblok space
+    Storyblok.get('cdn/stories/my-portfolio?version=draft')
+      .then(response => {
+        console.log('Fetched story:', response.data.story);
+      })
+      .catch(error => {
+        console.error('Error fetching story:', error);
+      });
+  </script>
 </body>
 
 </html>
