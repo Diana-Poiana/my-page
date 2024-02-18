@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Storyblok Admin</title>
+</head>
+
+<body>
+  <div id="app"></div>
+  <script type="text/javascript">
+    STORYBLOK_PREVIEW_URL = 'http://localhost:3000/'
+  </script>
+  <script src="https://app.storyblok.com/f/app-latest.js" type="text/javascript"></script>
+</body>
+local-ssl-proxy --source 8888 --target 8888 --cert localhost.pem --key localhost-key.pem
+
+</html>

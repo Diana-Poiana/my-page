@@ -1,0 +1,119 @@
+body {
+  font-size: 24px;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+.header {
+  background-color: #f2f2f2;
+}
+
+.header__wrapper {
+  padding: 20px 80px;
+}
+
+.container {
+  max-width: 1240px;
+  padding: 0 20px;
+  margin: 0 auto;
+}
+
+.aboutme__section {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.aboutme__content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.aboutme__image-container {
+  margin-right: 50px;
+}
+
+.aboutme__portrait {
+  border-radius: 50%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 500px;
+  height: 500px;
+}
+
+.aboutme__column {
+  max-width: 550px;
+  width: 100%;
+}
+
+.aboutme__title {
+  font-family: "Montserrat", sans-serif;
+  font-size: 72px;
+  margin-bottom: 40px;
+}
+
+.aboutme__description {
+  font-size: 16px;
+  line-height: 2;
+  margin-bottom: 40px;
+}
+
+.aboutme__link-list {
+  display: flex;
+}
+
+.aboutme__link-item {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  transition: all 0.5s;
+}
+
+.aboutme__link-item:not(:last-child) {
+  margin-right: 50px;
+}
+
+.aboutme__link-item:nth-child(1) {
+  color: #0066ff;
+  background-color: #99c2ff;
+  border: 2px solid #99c2ff;
+}
+
+.aboutme__link-item:nth-child(2) {
+  color: #e37218;
+  background-color: #f4c39d;
+  border: 2px solid #f4c39d;
+}
+
+
+.aboutme__link-item:nth-child(3) {
+  color: #e73d71;
+  background-color: #f5adc3;
+  border: 2px solid #f5adc3;
+}
+
+.aboutme__link-item:hover {
+  background-color: #ffffff;
+  transform: translateY(-6px);
+}
+
+
+.aboutme__link {
+  font-size: 20px;
+  font-family: "Montserrat", sans-serif;
+  width: 150px;
+  height: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer {
+  background-color: #333333;
+  padding: 20px 80px;
+}
+
