@@ -8,27 +8,45 @@ const aboutMePortrait = document.querySelector('.aboutme__image');
 const articleTexts = document.querySelectorAll('.blog__article-text');
 const articleTitles = document.querySelectorAll('.blog_title');
 
-async function fetchData() {
+
+const currentUrl = window.location.href;
+console.log(currentUrl);
+const parts = currentUrl.split("/");
+console.log(parts);
+const address = parts[parts.length - 1];
+console.log(address);
+
+async function fetchAllStories() {
   try {
-    const response = await fetch('https://api.storyblok.com/v2/cdn/stories/my-page?version=draft&token=LeefeUkJwy0vrTrfJ8rhUAtt&cv=1708350835');
+    const response = await fetch('https://api.storyblok.com/v2/cdn/stories?version=draft&token=LeefeUkJwy0vrTrfJ8rhUAtt&cv=1708350835');
     const data = await response.json();
     console.log(data);
-    const story = data.story.content;
-    console.log(story);
-    return story;
+    const stories = data.stories;
+    console.log(stories);
+    populateHtml(stories);
+    return stories;
   } catch (error) {
     console.error('Error fetching data:', error);
+    return [];
   }
 }
 
-async function populateHtml() {
-  const story = await fetchData();
-  const { title, description, image } = story;
-  console.log(title, description, image.filename);
-  aboutMeTitle.textContent = title;
-  aboutMeText.textContent = description;
-  aboutMePortrait.src = image.filename;
+// async function populateHtml() {
+//   const story = await fetchAllStories();
+//   console.log(story.stories);
+//   // const { title, description, image } = story;
+//   // console.log(title, description, image.filename);
+//   // aboutMeTitle.textContent = title;
+//   // aboutMeText.textContent = description;
+//   // aboutMePortrait.src = image.filename;
+// }
+
+function populateHtml(content) {
+  console.log(content);
+
+  content.forEach((page) => {
+    console.log(page);
+  })
 }
 
-populateHtml();
-
+fetchAllStories();
