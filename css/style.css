@@ -179,6 +179,10 @@ body {
   color: #ffffff;
 }
 
+.footer__link:hover {
+  color: rgb(201, 199, 199);
+}
+
 /* portfolio page */
 
 

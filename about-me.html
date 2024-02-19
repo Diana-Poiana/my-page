@@ -96,45 +96,16 @@
 
   <footer class="footer">
     <div class="footer__content">
-      My Github Page
+      <a class="footer__link" href="https://github.com/Diana-Poiana">
+        My GitHub Page
+      </a>
     </div>
   </footer>
 
 
 
   <script src="https://unpkg.com/@storyblok/js"></script>
-  <script>
-
-    const aboutMeTitle = document.querySelector('.aboutme__title');
-    const aboutMeText = document.querySelector('.aboutme__description');
-    const aboutMePortrait = document.querySelector('.aboutme__image');
-
-    //eejSoJjNQ134aC6UJ2x3xgtt
-
-    async function fetchData() {
-      try {
-        const response = await fetch('https://api.storyblok.com/v2/cdn/stories/home-page/about-me?version=draft&token=LeefeUkJwy0vrTrfJ8rhUAtt&cv=1708273168');
-        const data = await response.json();
-        const story = data.story.content;
-        console.log(story);
-        return story;
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    }
-
-    async function populateHtml() {
-      const story = await fetchData();
-      const { title, description, image } = story;
-      console.log(title, description, image.filename);
-      aboutMeTitle.textContent = title;
-      aboutMeText.textContent = description;
-      aboutMePortrait.src = image.filename;
-    }
-
-    populateHtml();
-
-  </script>
+  <script src="js/main.js"></script>
 
 </body>
 
