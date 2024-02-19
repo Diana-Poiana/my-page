@@ -10,7 +10,7 @@ const articleTitles = document.querySelectorAll('.blog_title');
 
 async function fetchData() {
   try {
-    const response = await fetch('https://api.storyblok.com/v2/cdn/stories/about-me?version=draft&token=LeefeUkJwy0vrTrfJ8rhUAtt');
+    const response = await fetch('https://api.storyblok.com/v2/cdn/stories/index?version=draft&token=LeefeUkJwy0vrTrfJ8rhUAtt');
     const data = await response.json();
     const story = data.story.content;
     console.log(story);
