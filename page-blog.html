@@ -19,7 +19,7 @@
 
   <header class="header">
     <div class="header__wrapper">
-      <ul class="header__link-list">
+      <ul class="header__link-list" onmouseover="handleHover(event, true)" onmouseout="handleHover(event, false)">
         <li class="header__link-item">
           <a class="header__link" href="index.html">
             home
@@ -40,7 +40,7 @@
 
         <li class="header__link-item">
           <a class="header__link" href="page-contacts.html">
-            how to contact me
+            contact me
           </a>
         </li>
       </ul>
@@ -53,48 +53,7 @@
         <h1 class="blog__title title">
           My Latest Articles
         </h1>
-
         <ul class="blog__article-list">
-          <li class="blog__article-item">
-            <h2 class="blog__article-subtitle">
-              First
-            </h2>
-            <p class="blog__article-text">
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Qui ea ab quo nisi deleniti ad doloremque quae
-              consequatur provident sit minima, magnam id ipsam nihil et! Dolor incidunt aperiam impedit?
-            </p>
-            <a class="blog__article-link" href="#">
-              Read More
-            </a>
-          </li>
-
-          <li class="blog__article-item">
-            <h2 class="blog__article-subtitle">
-              Second
-            </h2>
-            <p class="blog__article-text">
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Qui ea ab quo nisi deleniti ad doloremque quae
-              consequatur
-              provident sit minima, magnam id ipsam nihil et! Dolor incidunt aperiam impedit?
-            </p>
-            <a class="blog__article-link" href="#">
-              Read More
-            </a>
-          </li>
-
-          <li class="blog__article-item">
-            <h2 class="blog__article-subtitle">
-              Third
-            </h2>
-            <p class="blog__article-text">
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Qui ea ab quo nisi deleniti ad doloremque quae
-              consequatur
-              provident sit minima, magnam id ipsam nihil et! Dolor incidunt aperiam impedit?
-            </p>
-            <a class="blog__article-link" href="#">
-              Read More
-            </a>
-          </li>
         </ul>
       </section>
 
@@ -108,33 +67,77 @@
   </footer>
 
   <script src="https://unpkg.com/@storyblok/js"></script>
+  <script src="js/main.js"></script>
   <script>
+
+    const articleList = document.querySelector('.blog__article-list');
+
     // check address
-    const currentUrl = window.location.href;
-    console.log(currentUrl);
-    const parts = currentUrl.split("/");
-    console.log(parts);
-    const address = parts[parts.length - 1];
-    console.log(address);
-
-
-
+    // const currentUrl = window.location.href;
+    // console.log(currentUrl);
+    // const parts = currentUrl.split("/");
+    // console.log(parts);
+    // const address = parts[parts.length - 1];
+    // console.log(address);
 
     async function fetchData() {
       try {
-        const response = await fetch(`https://api.storyblok.com/v2/cdn/stories/my-page/${address}?version=draft&token=LeefeUkJwy0vrTrfJ8rhUAtt&cv=1708350835`);
+        const response = await fetch(`https://api.storyblok.com/v2/cdn/stories/?starts_with=articles&token=LeefeUkJwy0vrTrfJ8rhUAtt&cv=1708358161`);
         const data = await response.json();
         console.log(data);
         const stories = data.stories;
         console.log(stories);
         populateHtml(stories);
-        return stories;
+        return data;
       } catch (error) {
         console.error('Error fetching data:', error);
         return [];
       }
     }
 
+    function populateHtml(articles) {
+      console.log(articles);
+
+      articles.forEach((article) => {
+        console.log(article);
+        const title = article.content.title;
+        const content = article.content.description;
+        const date = formatDate(article.created_at);
+        const slug = formatDate(article.slug);
+        console.log(article.name);
+        console.log(article.content.text);
+        console.log(article.created_at);
+        console.log(article.slug);
+        renderArticleBlock(title, content, date, slug);
+      })
+    }
+
+    function renderArticleBlock(title, content, date, slug) {
+      let articleContent = `
+        <li class="blog__article-item">
+            <h2 class="blog__article-subtitle">
+              ${title}
+            </h2>
+            <p class="blog__article-text">
+              ${content}
+            </p>
+            <a class="blog__article-link" href="page-article/${slug}">
+              Read More
+            </a>
+            <p class="blog__article-date">
+              Date published: ${date}
+            </p>
+          </li>
+      `;
+
+      articleList.insertAdjacentHTML('beforeend', articleContent);
+    }
+
+    function formatDate(date) {
+      let formattedDate = date.split("T")[0];
+      console.log(formattedDate);
+      return formattedDate;
+    }
     fetchData();
 
   </script>
