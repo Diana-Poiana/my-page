@@ -1,14 +1,8 @@
 
-
-
-const currentUrl = window.location.href;
-console.log(currentUrl);
-const parts = currentUrl.split("/");
-console.log(parts);
-const address = parts[parts.length - 1];
-console.log(address);
-
 const menuList = document.querySelector('.header__link-list');
+
+const burgerBtn = document.querySelector('.header__burger-btn');
+const mobileMenu = document.querySelector('.header__mobile-menu');
 
 
 const colorArray = ['#0066ff', '#e37218', '#e73d71'];
@@ -24,6 +18,17 @@ function handleHover(event, isHovering) {
     }
   }
 }
+
+
+try {
+  burgerBtn.addEventListener('click', () => {
+    burgerBtn.classList.toggle('active');
+    mobileMenu.classList.toggle('active');
+  });
+} catch (error) {
+  console.log(error);
+}
+
 
 
 

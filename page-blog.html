@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Blog | Home</title>
+  <title>My Blog | Articles</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
@@ -50,6 +50,7 @@
   <main class="main">
     <div class="container">
       <section class="blog__section section">
+
         <h1 class="blog__title title">
           My Latest Articles
         </h1>
@@ -70,7 +71,12 @@
   <script src="js/main.js"></script>
   <script>
 
+    // const queryParams = new URLSearchParams({
+    //   articleName: articleName
+    // });
+
     const articleList = document.querySelector('.blog__article-list');
+
 
     // check address
     // const currentUrl = window.location.href;
@@ -121,7 +127,7 @@
             <p class="blog__article-text">
               ${content}
             </p>
-            <a class="blog__article-link" href="page-article/${slug}">
+            <a class="blog__article-link" id="${slug}">
               Read More
             </a>
             <p class="blog__article-date">
@@ -131,14 +137,39 @@
       `;
 
       articleList.insertAdjacentHTML('beforeend', articleContent);
+      checkLinks();
     }
+
+    function checkLinks() {
+      const articleLinks = document.querySelectorAll('.blog__article-link');
+      console.log(articleLinks);
+
+      articleLinks.forEach((link) => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          const linkId = e.target.id;
+          console.log(linkId);
+
+          const queryParams = new URLSearchParams({
+            linkId: linkId
+          });
+
+          window.location.href = 'page-article.html?' + queryParams.toString();
+        })
+      })
+    }
+
+
 
     function formatDate(date) {
       let formattedDate = date.split("T")[0];
       console.log(formattedDate);
       return formattedDate;
     }
+
     fetchData();
+
+
 
   </script>
   </script>

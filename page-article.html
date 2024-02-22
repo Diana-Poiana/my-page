@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Blog | Home</title>
+  <title>My Blog | Article Page</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
@@ -75,45 +75,43 @@
   <script src="js/main.js"></script>
   <script>
 
-    const articleTexts = document.querySelectorAll('.blog__article-text');
-    const articleTitles = document.querySelectorAll('.blog_title');
+    // function getUrlParams() {
+    //   const urlParams = new URLSearchParams(window.location.search);
+    //   console.log(urlParams);
+    //   const userID = urlParams.get('userID');
+    //   const title = urlParams.get('title');
+    //   return { userID, title };
+    // }
 
+    // getUrlParams();
 
-    // check address
-    const currentUrl = window.location.href;
-    console.log(currentUrl);
-    const parts = currentUrl.split("/");
-    console.log(parts);
-    const address = parts[parts.length - 1];
-    console.log(address);
+    //
 
+    // const currentUrl = window.location.pathname;
+    // const parts = currentUrl.split("/");
+    // const addressPart = parts[parts.length - 1];
+    // const articlePath = addressPart.split('.');
+    // const articleName = articlePath[0];
+    // console.log(articleName);
 
+    // async function fetchData() {
+    //   try {
+    //     const response = await fetch(`https://api.storyblok.com/v2/cdn/stories/articles/${articleName}?version=draft&token=LeefeUkJwy0vrTrfJ8rhUAtt&cv=1708597671`);
+    //     const data = await response.json();
+    //     console.log(data);
+    //     const stories = data.stories;
+    //     console.log(stories);
+    //     // populateHtml(stories);
+    //     return data;
+    //   } catch (error) {
+    //     console.error('Error fetching data:', error);
+    //     return [];
+    //   }
+    // }
 
-
-    async function fetchData() {
-      try {
-        const response = await fetch(`https://api.storyblok.com/v2/cdn/stories/articles/${address}?version=draft&token=LeefeUkJwy0vrTrfJ8rhUAtt&cv=1708358161`);
-        const data = await response.json();
-        console.log(data.story);
-        // const stories = data.stories;
-        // console.log(stories);
-        populateHtml(data.story);
-        return data.story;
-      } catch (error) {
-        console.error('Error fetching data:', error);
-        return [];
-      }
-    }
-
-    fetchData();
-
-    function populateHtml(story) {
-      console.log(story);
-    }
+    // fetchData();
 
   </script>
-
-  <script src="js/main.js"></script>
 </body>
 
 </html>
