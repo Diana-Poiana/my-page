@@ -147,11 +147,11 @@
       articleLinks.forEach((link) => {
         link.addEventListener('click', (e) => {
           e.preventDefault();
-          const linkId = e.target.id;
-          console.log(linkId);
+          const linkID = e.target.id;
+          console.log(linkID);
 
           const queryParams = new URLSearchParams({
-            linkId: linkId
+            linkID: linkID
           });
 
           window.location.href = 'page-article.html?' + queryParams.toString();
