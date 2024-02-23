@@ -30,6 +30,25 @@ try {
 }
 
 
+// async function fetchDataq() {
+//   try {
+//     const response = await fetch(`https://api.storyblok.com/v2/cdn/datasource_entries?datasource=github-link&token=eejSoJjNQ134aC6UJ2x3xgtt`);
+//     const data = await response.json();
+//     console.log(data);
+//   } catch (error) {
+//     console.error('Error fetching data:', error);
+//   }
+// }
+
+// fetchDataq();
+
+
+
+
+
+
+
+
 
 
 
