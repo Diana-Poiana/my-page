@@ -53,10 +53,10 @@ function hideLoaderShowContent(content) {
 }
 
 function checkIfPageExists() {
-  const validRoutes = ['/index', '/my-page', '/page-portfolio', '/page-resume', '/page-blog', '/page-article'];
+  const validRoutes = ['/index', '/index.html', '/my-page', '/my-page.html', '/page-portfolio', '/page-resume', '/page-blog', '/page-article', '/page-not-found.html'];
   const path = window.location.pathname;
   if (!validRoutes.includes(path)) {
-    window.location.href = '/page-not-found';
+    window.location.href = '/page-not-found.html';
   }
 }
 

@@ -26,6 +26,33 @@
       </section>
     </div>
   </main>
+
+  <script src="https://unpkg.com/@storyblok/js"></script>
+  <script src="js/main.js"></script>
+  <script>
+
+    const content = document.querySelector('.aboutme__content');
+    const aboutMeTitle = document.querySelector('.aboutme__title');
+    const aboutMeText = document.querySelector('.aboutme__description');
+    const aboutMePortrait = document.querySelector('.aboutme__image');
+
+    async function fetchData() {
+      try {
+        const response = await fetch(`https://api.storyblok.com/v2/cdn/stories/page-not-found?version=draft&token=LeefeUkJwy0vrTrfJ8rhUAtt&cv=1708713302`);
+        const data = await response.json();
+        console.log(data);
+
+        return data;
+      } catch (error) {
+        console.error('Error fetching data:', error);
+        return [];
+      }
+    }
+
+
+    fetchData();
+
+  </script>
 </body>
 
 </html>
