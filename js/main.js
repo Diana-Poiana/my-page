@@ -52,12 +52,12 @@ function hideLoaderShowContent(content) {
   content.style.display = '';
 }
 
-// function checkIfPageExists() {
-//   const validRoutes = ['/index', '/my-page', '/page-contacts', '/page-portfolio', '/page-resume', '/page-blog', '/page-article'];
-//   const path = window.location.pathname;
-//   if (!validRoutes.includes(path)) {
-//     window.location.href = '/page-not-found';
-//   }
-// }
+function checkIfPageExists() {
+  const validRoutes = ['/index.html', '/my-page.html', '/page-portfolio.html', '/page-resume.html', '/page-blog.html', '/page-article.html'];
+  const path = window.location.pathname;
+  if (!validRoutes.includes(path)) {
+    window.location.href = '/page-not-found.html';
+  }
+}
 
-// window.addEventListener('DOMContentLoaded', checkIfPageExists);
+window.addEventListener('DOMContentLoaded', checkIfPageExists);
