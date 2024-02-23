@@ -53,7 +53,7 @@ function hideLoaderShowContent(content) {
 }
 
 function checkIfPageExists() {
-  const validRoutes = ['/index.html', '/my-page.html', '/page-portfolio.html', '/page-resume.html', '/page-blog.html', '/page-article.html'];
+  const validRoutes = ['/index', '/my-page', '/page-portfolio', '/page-resume', '/page-blog', '/page-article'];
   const path = window.location.pathname;
   if (!validRoutes.includes(path)) {
     window.location.href = '/page-not-found';
