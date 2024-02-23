@@ -56,7 +56,7 @@ function checkIfPageExists() {
   const validRoutes = ['index', 'my-portfolio', 'page-contacts', '/page-portfolio', 'page-resume', 'page-blog', 'page-article'];
   const path = window.location.pathname;
   if (!validRoutes.includes(path)) {
-    window.location.href = '/404';
+    window.location.href = '404';
   }
 }
 
