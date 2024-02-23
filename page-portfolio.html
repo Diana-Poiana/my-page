@@ -27,14 +27,14 @@
         </li>
 
         <li class="header__link-item">
-          <a class="header__link" href="page-portfolio.html">
-            portfolio
+          <a class="header__link" href="page-blog.html">
+            blog
           </a>
         </li>
 
         <li class="header__link-item">
-          <a class="header__link" href="page-blog.html">
-            blog
+          <a class="header__link" href="page-portfolio.html">
+            portfolio
           </a>
         </li>
 
@@ -44,6 +44,42 @@
           </a>
         </li>
       </ul>
+
+      <ul class="header__mobile-menu">
+        <li class="header__mobile-item">
+          <a class="header__mobile-link" href="index.html">
+            home
+          </a>
+        </li>
+
+        <li class="header__mobile-item">
+          <a class="header__mobile-link" href="page-portfolio.html">
+            portfolio
+          </a>
+        </li>
+
+        <li class="header__mobile-item">
+          <a class="header__mobile-link" href="page-blog.html">
+            blog
+          </a>
+        </li>
+
+        <li class="header__mobile-item">
+          <a class="header__mobile-link" href="page-contacts.html">
+            contact me
+          </a>
+        </li>
+      </ul>
+
+      <a class="header__logo" href="">
+        <img src="images/logo.svg" alt="logo">
+      </a>
+
+      <button class="header__burger-btn">
+        <span class="header__burger-span">
+        </span>
+      </button>
+
     </div>
   </header>
 
@@ -51,83 +87,43 @@
     <div class="container">
 
       <section class="portfolio__section section">
-        <div class="portfolio__content">
+        <span class="loader"></span>
+        <div class="portfolio__content" style="display: none">
           <h1 class="portfolio__title title">
             My Recent Works
           </h1>
 
-          <ul class="portfolio__list">
-            <li class="portfolio__item">
-              <a class="portfolio__link" href="#">
-                <div class="portfolio__image-container">
-                  <img class="portfolio__image" src="images/1.png" alt="">
-                </div>
-                <h2 class="portfolio__subtitle">
-                  Burger App
-                  <span class="portfolio__descr-text">
-                    Working with DOM structure
-                  </span>
-                </h2>
-              </a>
-            </li>
+          <div class="portfolio__slider-inner">
+            <ul class=" portfolio__list">
 
-            <li class="portfolio__item">
-              <a class="portfolio__link" href="#">
-                <div class="portfolio__image-container">
-                  <img class="portfolio__image" src="images/2.png" alt="">
-                </div>
-                <h2 class="portfolio__subtitle">
-                  Burger App
-                  <span class="portfolio__descr-text">
-                    Working with DOM structure
-                  </span>
-                </h2>
-              </a>
-            </li>
+              <!-- <li class="portfolio__item">
+                <a class="portfolio__link" href="#">
+                  <div class="portfolio__image-container">
+                    <img class="portfolio__image" src="images/bookdiary.png" alt="">
+                  </div>
+                  <h2 class="portfolio__subtitle">
+                    Burger App
+                    <span class="portfolio__descr-text">
+                      Working with DOM structure
+                    </span>
+                  </h2>
+                </a>
+              </li> -->
 
-            <li class="portfolio__item">
-              <a class="portfolio__link" href="#">
-                <div class="portfolio__image-container">
-                  <img class="portfolio__image" src="images/3.png" alt="">
-                </div>
-                <h2 class="portfolio__subtitle">
-                  Burger App
-                  <span class="portfolio__descr-text">
-                    Working with DOM structure
-                  </span>
-                </h2>
-              </a>
-            </li>
+            </ul>
+          </div>
 
-            <li class="portfolio__item">
-              <a class="portfolio__link" href="#">
-                <div class="portfolio__image-container">
-                  <img class="portfolio__image" src="images/2.png" alt="">
-                </div>
-                <h2 class="portfolio__subtitle">
-                  Burger App
-                  <span class="portfolio__descr-text">
-                    Working with DOM structure
-                  </span>
-                </h2>
-              </a>
-            </li>
+          <button class="portfolio__button-prev">
+            <span class="portfolio__btn-span">
+              Prev
+            </span>
+          </button>
 
-            <li class="portfolio__item">
-              <a class="portfolio__link" href="#">
-                <div class="portfolio__image-container">
-                  <img class="portfolio__image" src="images/1.png" alt="">
-                </div>
-                <h2 class="portfolio__subtitle">
-                  Burger App
-                  <span class="portfolio__descr-text">
-                    Working with DOM structure
-                  </span>
-                </h2>
-              </a>
-            </li>
-
-          </ul>
+          <button class="portfolio__button-next">
+            <span class="portfolio__btn-span">
+              Next
+            </span>
+          </button>
         </div>
       </section>
 
@@ -140,6 +136,95 @@
     </div>
   </footer>
   <script src="js/main.js"></script>
+  <script>
+
+    let slideIndex = 0;
+    const content = document.querySelector('.portfolio__content');
+    async function fetchData() {
+      try {
+        const response = await fetch(`https://api.storyblok.com/v2/cdn/stories/?starts_with=page-portfolio/&token=LeefeUkJwy0vrTrfJ8rhUAtt&cv=1708634484`);
+        const data = await response.json();
+        console.log(data);
+        const stories = data.stories;
+        console.log(stories);
+        populateHtml(stories);
+        hideLoaderShowContent(content);
+        return data;
+      } catch (error) {
+        console.error('Error fetching data:', error);
+        return [];
+      }
+    }
+
+    function populateHtml(works) {
+      works.forEach((work) => {
+        console.log(work);
+        const title = work.content.name;
+        const content = work.content.description;
+        const img = work.content.image.filename;
+        const link = work.content.link.url;
+        console.log(work.content.name);
+        console.log(work.content.description);
+        console.log(work.content.image.filename);
+        console.log(work.content.link.url);
+        renderPortfolioList(title, content, img, link);
+      });
+      calculateSliderWidth();
+    }
+
+    function renderPortfolioList(title, content, img, link) {
+      let workContent = `
+        <li class="portfolio__item">
+            <a class="portfolio__link" href="${link}">
+              <div class="portfolio__image-container">
+                <img class="portfolio__image" src="${img}" alt="">
+              </div>
+              <h2 class="portfolio__subtitle">
+                ${title}
+                <p class="portfolio__descr-text">
+                      ${content}
+                </p>
+              </h2>
+            </a>
+        </li>
+      `;
+
+      slideIndex++;
+      slidesField.insertAdjacentHTML('beforeend', workContent);
+    }
+
+    function calculateSliderWidth() {
+      let width;
+      width = slidesField.querySelector('.portfolio__item').clientWidth;
+      slidesField.style.width = slideIndex * width + 'px';
+
+      return width;
+    }
+
+    prev.addEventListener('click', () => {
+      width = calculateSliderWidth();
+      if (offset == 0) {
+        offset = width * (slideIndex - 1);
+
+      } else {
+        offset -= width;
+      }
+      slidesField.style.transform = `translateX(-${offset}px)`;
+    });
+
+    next.addEventListener('click', () => {
+      width = calculateSliderWidth();
+      if (offset == +width * (slideIndex - 1)) {
+        offset = 0;
+      } else {
+        offset += +width;
+      }
+      slidesField.style.transform = `translateX(-${offset}px)`;
+    });
+
+
+    fetchData();
+  </script>
 </body>
 
 </html>

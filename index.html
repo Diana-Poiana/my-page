@@ -87,8 +87,8 @@
     <div class="container">
 
       <section class="aboutme__section">
-        <!-- <span class="loader"></span> -->
-        <div class="aboutme__content">
+        <span class="loader"></span>
+        <div class="aboutme__content" style="display: none">
 
           <div class="aboutme__image-container">
             <img class="aboutme__image" src="" alt="portrait of developer">
@@ -148,11 +148,10 @@
   <script src="js/main.js"></script>
   <script>
 
-
+    const content = document.querySelector('.aboutme__content');
     const aboutMeTitle = document.querySelector('.aboutme__title');
     const aboutMeText = document.querySelector('.aboutme__description');
     const aboutMePortrait = document.querySelector('.aboutme__image');
-    const aboutMeLinks = document.querySelectorAll('.aboutme__link');
 
     async function fetchData() {
       try {
@@ -162,6 +161,7 @@
         const story = data.story;
         console.log(story);
         populateHtml(story);
+        hideLoaderShowContent(content);
         return data;
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -171,16 +171,11 @@
 
     function populateHtml(story) {
       console.log(story);
-      const { title, description, image, link1, link2, link3 } = story.content;
+      const { title, description, image } = story.content;
       console.log(title, description, image.filename);
       aboutMeTitle.textContent = title;
       aboutMeText.textContent = description;
       aboutMePortrait.src = image.filename;
-      console.log(link1.cached_url, link2.cached_url, link3.cached_url);
-
-      aboutMeLinks.forEach((link) => {
-        link.setAttribute('href', link1.cached_url);
-      })
     }
 
     fetchData();

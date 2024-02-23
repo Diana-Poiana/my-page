@@ -86,11 +86,11 @@
   <main class="main">
     <div class="container">
       <section class="blog__section section">
-
         <h1 class="blog__title title">
           My Latest Articles
         </h1>
-        <ul class="blog__article-list">
+        <span class="loader"></span>
+        <ul class="blog__article-list" style="display: none">
         </ul>
       </section>
 
@@ -132,6 +132,7 @@
         const stories = data.stories;
         console.log(stories);
         populateHtml(stories);
+        hideLoaderShowContent(articleList);
         return data;
       } catch (error) {
         console.error('Error fetching data:', error);

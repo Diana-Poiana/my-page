@@ -30,69 +30,34 @@ try {
 }
 
 
-// async function fetchDataq() {
-//   try {
-//     const response = await fetch(`https://api.storyblok.com/v2/cdn/datasource_entries?datasource=github-link&token=eejSoJjNQ134aC6UJ2x3xgtt`);
-//     const data = await response.json();
-//     console.log(data);
-//   } catch (error) {
-//     console.error('Error fetching data:', error);
-//   }
-// }
+// portfolio slider
 
-// fetchDataq();
+const slides = document.querySelectorAll('.portfolio__item');
+const prev = document.querySelector('.portfolio__button-prev');
+const next = document.querySelector('.portfolio__button-next');
+const slidesWrapper = document.querySelector('.portfolio__slider-inner');
+const slidesField = document.querySelector('.portfolio__list');
+// const slidesField = document.querySelector('.portfolio__list');
 
+let offset = 0;
 
 
+// loader
+
+const loader = document.querySelector('.loader');
 
 
+function hideLoaderShowContent(content) {
+  loader.style.display = 'none';
+  content.style.display = '';
+}
 
+function checkIfPageExists() {
+  const validRoutes = ['/index', '/my-portfolio', '/page-contacts', '/page-portfolio', '/page-resume', '/page-blog', '/page-article'];
+  const path = window.location.pathname;
+  if (!validRoutes.includes(path)) {
+    window.location.href = '/404';
+  }
+}
 
-
-
-
-
-// async function fetchAllStories() {
-//   try {
-//     const response = await fetch('https://api.storyblok.com/v2/cdn/stories?version=draft&token=LeefeUkJwy0vrTrfJ8rhUAtt&cv=1708350835');
-//     const data = await response.json();
-//     console.log(data);
-//     const stories = data.stories;
-//     console.log(stories);
-//     populateHtml(stories);
-//     return stories;
-//   } catch (error) {
-//     console.error('Error fetching data:', error);
-//     return [];
-//   }
-// }
-
-// async function populateHtml() {
-//   const story = await fetchAllStories();
-//   console.log(story.stories);
-//   // const { title, description, image } = story;
-//   // console.log(title, description, image.filename);
-//   // aboutMeTitle.textContent = title;
-//   // aboutMeText.textContent = description;
-//   // aboutMePortrait.src = image.filename;
-// }
-
-// function populateHtml(content) {
-//   console.log(content);
-
-//   content.forEach((page) => {
-//     console.log(page);
-//   })
-// }
-
-// fetchAllStories();
-
-// function checkIfPageExists() {
-//   const validRoutes = ['/index', '/my-portfolio', '/page-contacts', '/page-portfolio', '/page-resume', '/page-blog', '/page-article'];
-//   const path = window.location.pathname;
-//   if (!validRoutes.includes(path)) {
-//     window.location.href = '/404';
-//   }
-// }
-
-// window.addEventListener('DOMContentLoaded', checkIfPageExists);
+window.addEventListener('DOMContentLoaded', checkIfPageExists);
