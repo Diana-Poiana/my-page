@@ -57,7 +57,7 @@ function checkIfPageExists() {
   const path = window.location.pathname.replace(/^\//, '');
 
   if (!validRoutes.includes(path)) {
-    if (path !== '/page-not-found.html') {
+    if (path !== 'page-not-found.html') {
       window.location.href = '/page-not-found.html';
     }
   }
