@@ -52,15 +52,15 @@ function hideLoaderShowContent(content) {
   content.style.display = '';
 }
 
-// function checkIfPageExists() {
-//   const validRoutes = ['index', 'my-page', 'page-portfolio', 'page-resume', 'page-blog', 'page-article', 'page-contacts', 'page-not-found.html'];
-//   const path = window.location.pathname; // Убираем начальный слеш
+function checkIfPageExists() {
+  const validRoutes = ['index', 'my-page', 'page-portfolio', 'page-resume', 'page-blog', 'page-article', 'page-contacts', 'page-not-found.html'];
+  const path = window.location.pathname;
 
-//   if (!validRoutes.includes(path)) {
-//     if (path !== '/page-not-found.html') {
-//       window.location.href = '/page-not-found.html';
-//     }
-//   }
-// }
+  if (!validRoutes.includes(path)) {
+    if (path !== '/page-not-found.html') {
+      window.location.href = '/page-not-found.html';
+    }
+  }
+}
 
-// window.addEventListener('DOMContentLoaded', checkIfPageExists);
+window.addEventListener('DOMContentLoaded', checkIfPageExists);
