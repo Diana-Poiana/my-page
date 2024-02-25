@@ -52,18 +52,18 @@ function hideLoaderShowContent(content) {
   content.style.display = '';
 }
 
-const validRoutes = ['index', 'my-page', 'page-portfolio', 'page-resume', 'page-blog', 'page-article', 'page-contacts', 'page-not-found.html'];
+// const validRoutes = ['index', 'my-page', 'page-portfolio', 'page-resume', 'page-blog', 'page-article', 'page-contacts', 'page-not-found.html'];
 
-function checkIfPageExists() {
-  const path = window.location.pathname.replace(/^\//, '');
+// function checkIfPageExists() {
+//   const path = window.location.pathname.replace(/^\//, '');
 
-  if (path !== '') {
-    if (!validRoutes.includes(path)) {
-      if (path !== 'page-not-found.html') {
-        window.location.href = '/page-not-found.html';
-      }
-    }
-  }
-}
+//   if (path !== '') {
+//     if (!validRoutes.includes(path)) {
+//       if (path !== 'page-not-found.html') {
+//         window.location.href = '/page-not-found.html';
+//       }
+//     }
+//   }
+// }
 
 window.addEventListener('DOMContentLoaded', checkIfPageExists);
