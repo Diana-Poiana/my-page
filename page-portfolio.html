@@ -148,9 +148,7 @@
       try {
         const response = await fetch(`https://api.storyblok.com/v2/cdn/stories/?starts_with=page-portfolio/&token=LeefeUkJwy0vrTrfJ8rhUAtt&cv=1708634484`);
         const data = await response.json();
-        console.log(data);
         const stories = data.stories;
-        console.log(stories);
         populateHtml(stories);
         hideLoaderShowContent(content);
         return data;
@@ -162,15 +160,10 @@
 
     function populateHtml(works) {
       works.forEach((work) => {
-        console.log(work);
         const title = work.content.name;
         const content = work.content.description;
         const img = work.content.image.filename;
         const link = work.content.link.url;
-        console.log(work.content.name);
-        console.log(work.content.description);
-        console.log(work.content.image.filename);
-        console.log(work.content.link.url);
         renderPortfolioList(title, content, img, link);
       });
       calculateSliderWidth();
@@ -225,7 +218,6 @@
       }
       slidesField.style.transform = `translateX(-${offset}px)`;
     });
-
 
     fetchData();
   </script>

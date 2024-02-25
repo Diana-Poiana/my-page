@@ -16,7 +16,6 @@
 </head>
 
 <body>
-
   <header class="header">
     <div class="header__wrapper">
       <ul class="header__link-list" onmouseover="handleHover(event, true)" onmouseout="handleHover(event, false)">
@@ -65,14 +64,14 @@
         </li>
 
         <li class="header__mobile-item">
-          <a class="header__mobile-link" href="page-contacts.html">
+          <a class="header__mobile-link" href="page-page-contacts.html">
             contact me
           </a>
         </li>
       </ul>
 
       <a class="header__logo" href="">
-        LOGO
+        <img src="images/logo.svg" alt="logo">
       </a>
 
       <button class="header__burger-btn">
@@ -87,7 +86,8 @@
     <div class="container">
 
       <section class="article__section section">
-        <div class="article__content">
+        <span class="loader"></span>
+        <div class="article__content" style="display: none">
           <h1 class="article__title title">
 
           </h1>
@@ -96,15 +96,6 @@
 
           </p>
         </div>
-
-        <!-- <div class="article__nav">
-          <a class="article__previous">
-            Previous
-          </a>
-          <a class="article__next">
-            Next
-          </a>
-        </div> -->
       </section>
 
 
@@ -125,20 +116,19 @@
     const articleTitle = document.querySelector('.article__title');
     const articleText = document.querySelector('.article__text');
     const articleImage = document.querySelector('.article__image');
+    const content = document.querySelector('.article__content');
 
     const currentUrl = window.location.href;
-    const parts = currentUrl.split("?");
-    const linkPath = parts[1].split('=');
-    const articleName = linkPath[1];
-    console.log(articleName);
+    const parts = currentUrl.split("?/");
+    const articleName = parts[1];
 
     async function fetchData() {
       try {
         const response = await fetch(`https://api.storyblok.com/v2/cdn/stories/articles/${articleName}?version=draft&token=LeefeUkJwy0vrTrfJ8rhUAtt&cv=1708597671`);
         const data = await response.json();
         const story = data.story;
-        console.log(story);
         populateHtml(story);
+        hideLoaderShowContent(content);
         return data;
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -147,9 +137,7 @@
     }
 
     function populateHtml(story) {
-      console.log(story);
       const { title, text, image } = story.content;
-      console.log(title, text, image.filename);
       articleTitle.textContent = title;
       articleText.textContent = text;
       articleImage.src = image.filename;
