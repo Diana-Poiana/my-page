@@ -56,7 +56,7 @@ function checkIfPageExists() {
   const validRoutes = ['/index', '/index.html', '/my-page', '/my-page.html', '/page-portfolio', '/page-portfolio.html', '/page-resume', '/page-blog', '/page-blog.html', '/page-article', '/page-article.html', '/page-not-found.html'];
   const path = window.location.pathname;
   if (!validRoutes.includes(path)) {
-    window.location.href = 'my-page/page-not-found.html';
+    window.location.href = 'page-not-found.html';
   }
 }
 
