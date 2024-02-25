@@ -54,7 +54,7 @@ function hideLoaderShowContent(content) {
 
 function checkIfPageExists() {
   const validRoutes = ['index', 'my-page', 'page-portfolio', 'page-resume', 'page-blog', 'page-article', 'page-contacts', 'page-not-found.html'];
-  const path = window.location.pathname;
+  const path = window.location.pathname.replace(/^\//, '');
 
   if (!validRoutes.includes(path)) {
     if (path !== '/page-not-found.html') {
