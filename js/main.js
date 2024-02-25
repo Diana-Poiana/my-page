@@ -56,7 +56,7 @@ function checkIfPageExists() {
   const validRoutes = ['/index', '/my-page', '/page-portfolio', '/page-resume', '/page-blog', '/page-article', '/page-not-found.html'];
   const path = window.location.pathname;
 
-  
+
   const validPaths = validRoutes.map(route => route + '.html');
 
   if (!validPaths.includes(path)) {
@@ -65,5 +65,5 @@ function checkIfPageExists() {
     }
   }
 }
-
+//
 window.addEventListener('DOMContentLoaded', checkIfPageExists);

@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Blog | Contacts</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+  <header class="header">
+    <div class="header__wrapper">
+      <ul class="header__link-list" onmouseover="handleHover(event, true)" onmouseout="handleHover(event, false)">
+        <li class="header__link-item">
+          <a class="header__link" href="index.html">
+            home
+          </a>
+        </li>
+
+        <li class="header__link-item">
+          <a class="header__link" href="page-blog.html">
+            blog
+          </a>
+        </li>
+
+        <li class="header__link-item">
+          <a class="header__link" href="page-portfolio.html">
+            portfolio
+          </a>
+        </li>
+
+        <li class="header__link-item">
+          <a class="header__link" href="page-contacts.html">
+            contact me
+          </a>
+        </li>
+      </ul>
+
+      <ul class="header__mobile-menu">
+        <li class="header__mobile-item">
+          <a class="header__mobile-link" href="index.html">
+            home
+          </a>
+        </li>
+
+        <li class="header__mobile-item">
+          <a class="header__mobile-link" href="page-portfolio.html">
+            portfolio
+          </a>
+        </li>
+
+        <li class="header__mobile-item">
+          <a class="header__mobile-link" href="page-blog.html">
+            blog
+          </a>
+        </li>
+
+        <li class="header__mobile-item">
+          <a class="header__mobile-link" href="page-contacts.html">
+            contact me
+          </a>
+        </li>
+      </ul>
+
+      <a class="header__logo" href="">
+        LOGO
+      </a>
+
+      <button class="header__burger-btn">
+        <span class="header__burger-span">
+        </span>
+      </button>
+
+    </div>
+  </header>
+
+  <main class="main">
+    <div class="container">
+      <section class="contacts__section section">
+
+        <h1 class="contacts__title title">
+          Contact me
+          <span class="contacts__subtitle">
+            Let's talk about your future project
+          </span>
+        </h1>
+
+
+        <div class="contacts__content">
+          <img class="contacts__img" src="images/mail.avif" alt="">
+
+          <form class="contacts__form" action="#">
+            <label class="contacts__label">
+              <input class="contacts__input" type="text" placeholder="Your name*" required>
+            </label>
+
+            <label class="contacts__label">
+              <input class="contacts__input" type="text" placeholder="Your surname*" required>
+            </label>
+
+            <label class="contacts__label">
+              <input class="contacts__input" type="text" placeholder="Your email*" required>
+            </label>
+
+            <label class="contacts__label">
+              <textarea class="contacts__input contacts__textarea" name="" id="" cols="30" rows="10"
+                placeholder="Your message*"></textarea></label>
+          </form>
+
+
+        </div>
+        <button class="contacts__button" type="submit">
+          Send Message
+        </button>
+
+
+        <!-- <ul class="contacts__list">
+          <li class="contacts__link-item">
+            <a class="contacts__link" href="mailto:diana.website.developer@gmail.com">
+
+            </a>
+          </li>
+
+          <li class="contacts__link-item">
+            <a class="contacts__link" href="mailto:diana.website.developer@gmail.com">
+          
+            </a>
+          </li>
+
+          <li class="contacts__link-item">
+            <a class="contacts__link" href="mailto:diana.website.developer@gmail.com">
+          
+            </a>
+          </li>
+        </ul> -->
+
+      </section>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__content">
+      <a class="footer__link" href="https://github.com/Diana-Poiana">
+        My GitHub Page
+      </a>
+    </div>
+  </footer>
+
+  <script src="https://unpkg.com/@storyblok/js"></script>
+  <script src="js/main.js"></script>
+  <script>
+
+    // const queryParams = new URLSearchParams({
+    //   articleName: articleName
+    // });
+
+    const articleList = document.querySelector('.blog__article-list');
+
+
+    // check address
+    // const currentUrl = window.location.href;
+    // console.log(currentUrl);
+    // const parts = currentUrl.split("/");
+    // console.log(parts);
+    // const address = parts[parts.length - 1];
+    // console.log(address);
+
+    async function fetchData() {
+      try {
+        const response = await fetch(`https://api.storyblok.com/v2/cdn/stories/?starts_with=articles&token=LeefeUkJwy0vrTrfJ8rhUAtt&cv=1708358161`);
+        const data = await response.json();
+        console.log(data);
+        const stories = data.stories;
+        console.log(stories);
+        populateHtml(stories);
+        hideLoaderShowContent(articleList);
+        return data;
+      } catch (error) {
+        console.error('Error fetching data:', error);
+        return [];
+      }
+    }
+
+    function populateHtml(articles) {
+      console.log(articles);
+
+      articles.forEach((article) => {
+        console.log(article);
+        const title = article.content.title;
+        const content = article.content.description;
+        const date = formatDate(article.created_at);
+        const slug = formatDate(article.slug);
+        console.log(article.name);
+        console.log(article.content.text);
+        console.log(article.created_at);
+        console.log(article.slug);
+        renderArticleBlock(title, content, date, slug);
+      })
+    }
+
+    function renderArticleBlock(title, content, date, slug) {
+      let articleContent = `
+        <li class="blog__article-item">
+            <h2 class="blog__article-subtitle">
+              ${title}
+            </h2>
+            <p class="blog__article-text">
+              ${content}
+            </p>
+            <a class="blog__article-link" id="${slug}">
+              Read More
+            </a>
+            <p class="blog__article-date">
+              Date published: ${date}
+            </p>
+          </li>
+      `;
+
+      articleList.insertAdjacentHTML('beforeend', articleContent);
+      checkLinks();
+    }
+
+    function checkLinks() {
+      const articleLinks = document.querySelectorAll('.blog__article-link');
+      console.log(articleLinks);
+
+      articleLinks.forEach((link) => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          const linkID = e.target.id;
+          console.log(linkID);
+
+          const queryParams = new URLSearchParams({
+            linkID: linkID
+          });
+
+          window.location.href = 'page-article.html?' + queryParams.toString();
+        })
+      })
+    }
+
+
+
+    function formatDate(date) {
+      let formattedDate = date.split("T")[0];
+      console.log(formattedDate);
+      return formattedDate;
+    }
+
+    fetchData();
+
+
+
+  </script>
+  </script>
+</body>
+
+</html>
