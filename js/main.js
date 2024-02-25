@@ -53,17 +53,17 @@ function hideLoaderShowContent(content) {
 }
 
 function checkIfPageExists() {
-  const validRoutes = ['index', 'my-page', 'page-portfolio', 'page-resume', 'page-blog', 'page-article', 'page-contacts', 'page-not-found.html'];
+  const path = window.location.pathname;
 
-  const path = window.location.pathname.replace(/^\//, '');
-
-  if (path !== '') {
-    if (!validRoutes.includes(path)) {
-      if (path !== 'page-not-found.html') {
+  fetch(path, { method: 'HEAD' })
+    .then(response => {
+      if (response.status === 404) {
         window.location.href = '/page-not-found.html';
       }
-    }
-  }
+    })
+    .catch(error => {
+      console.error('Error occured...', error);
+    });
 }
 
 window.addEventListener('DOMContentLoaded', checkIfPageExists);
