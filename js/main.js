@@ -55,4 +55,4 @@ function hideLoaderShowContent(content) {
 //   }
 // }
 
-window.addEventListener('DOMContentLoaded', checkIfPageExists);
+// window.addEventListener('DOMContentLoaded', checkIfPageExists);
