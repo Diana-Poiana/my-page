@@ -44,7 +44,6 @@ function hideLoaderShowContent(content) {
 // const validRoutes = ['index', 'my-page', 'page-portfolio', 'page-resume', 'page-blog', 'page-article', 'page-contacts', 'page-not-found.html'];
 
 // function checkIfPageExists() {
-//   const path = window.location.pathname.replace(/^\//, '');
 
 //   if (path !== '') {
 //     if (!validRoutes.includes(path)) {
