@@ -1,11 +1,17 @@
-
+// menu
 const menuList = document.querySelector('.header__link-list');
-
 const burgerBtn = document.querySelector('.header__burger-btn');
 const mobileMenu = document.querySelector('.header__mobile-menu');
-
-
+// slider
+const slides = document.querySelectorAll('.portfolio__item');
+const prev = document.querySelector('.portfolio__button-prev');
+const next = document.querySelector('.portfolio__button-next');
+const slidesWrapper = document.querySelector('.portfolio__slider-inner');
+const slidesField = document.querySelector('.portfolio__list');
+// other
+const loader = document.querySelector('.loader');
 const colorArray = ['#0066ff', '#e37218', '#e73d71'];
+let offset = 0;
 
 function handleHover(event, isHovering) {
   if (event.target.tagName === 'A') {
@@ -19,7 +25,7 @@ function handleHover(event, isHovering) {
   }
 }
 
-
+// menu
 try {
   burgerBtn.addEventListener('click', () => {
     burgerBtn.classList.toggle('active');
@@ -29,24 +35,7 @@ try {
   console.log(error);
 }
 
-
-// portfolio slider
-
-const slides = document.querySelectorAll('.portfolio__item');
-const prev = document.querySelector('.portfolio__button-prev');
-const next = document.querySelector('.portfolio__button-next');
-const slidesWrapper = document.querySelector('.portfolio__slider-inner');
-const slidesField = document.querySelector('.portfolio__list');
-// const slidesField = document.querySelector('.portfolio__list');
-
-let offset = 0;
-
-
 // loader
-
-const loader = document.querySelector('.loader');
-
-
 function hideLoaderShowContent(content) {
   loader.style.display = 'none';
   content.style.display = '';
