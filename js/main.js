@@ -61,7 +61,7 @@ function checkIfPageExists() {
 
   if (!validPaths.includes(path)) {
     if (path !== '/page-not-found.html') {
-      window.location.href = 'my-page/page-not-found.html';
+      window.location.href = '/page-not-found.html';
     }
   }
 }
