@@ -155,7 +155,7 @@
 
     async function fetchData() {
       try {
-        const response = await fetch(`https://api.storyblok.com/v2/cdn/stories/my-page?version=draft&token=LeefeUkJwy0vrTrfJ8rhUAtt&cv=1708618640`);
+        const response = await fetch(`https://api.storyblok.com/v2/cdn/stories/index?cv=1708869179&token=LeefeUkJwy0vrTrfJ8rhUAtt&version=published`);
         const data = await response.json();
         const story = data.story;
         populateHtml(story);
