@@ -165,8 +165,10 @@
         link.addEventListener('click', (e) => {
           e.preventDefault();
           const linkID = e.target.id;
+          const newPath = 'page-article.html?/' + linkID;
 
           window.location.href = 'page-article.html?/' + linkID;
+          validRoutes.push(newPath);
         })
       })
     }
