@@ -52,6 +52,7 @@ function hideLoaderShowContent(content) {
   content.style.display = '';
 }
 
+
 // function checkIfPageExists() {
 //   const validRoutes = ['/index', '/my-page', '/page-portfolio', '/page-resume', '/page-blog', '/page-article', '/page-contacts', '/page-not-found.html'];
 //   const path = window.location.pathname;
