@@ -68,3 +68,14 @@ function hideLoaderShowContent(content) {
 // }
 
 // window.addEventListener('DOMContentLoaded', checkIfPageExists);
+function checkIfPageExists() {
+  const validRoutes = ['/index', '/my-page', '/page-portfolio', '/page-resume', '/page-blog', '/page-article', '/page-not-found.html'];
+  const path = window.location.pathname;
+  // Добавляем расширение .html к каждому пути в массиве validRoutes
+  const validPaths = validRoutes.map(route => route + '.html');
+  if (!validPaths.includes(path)) {
+    window.location.href = '/page-not-found.html';
+  }
+}
+
+window.addEventListener('DOMContentLoaded', checkIfPageExists);
